@@ -70,9 +70,11 @@ LOCAL = $(TESTS) $(CWARNS)
 
 
 # enable Linux goodies
-MYCFLAGS= $(LOCAL) -std=c99 -DLUA_USE_LINUX
+MYCFLAGS= $(LOCAL) -std=c99 -DLUA_USE_LINUX $(MYCFLAGS_EXTRA)
 MYLDFLAGS= $(LOCAL) -Wl,-E
+ifeq ($(MYLIBS),)
 MYLIBS= -ldl
+endif
 
 
 CC= gcc

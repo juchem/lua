@@ -66,24 +66,33 @@
 ** the specified library, it will generate a warning and then run
 ** without 'readline'.  If that macro is not defined, lua.c will not
 ** use 'readline'.
+**
+** To disable dynamic loading libraries, define the macro
+** 'LUA_DISABLE_DLOPEN'.
 */
 #if defined(LUA_USE_LINUX)
 #define LUA_USE_POSIX
+#ifndef LUA_DISABLE_DLOPEN
 #define LUA_USE_DLOPEN		/* needs an extra library: -ldl */
+#endif
 #define LUA_READLINELIB		"libreadline.so"
 #endif
 
 
 #if defined(LUA_USE_MACOSX)
 #define LUA_USE_POSIX
+#ifndef LUA_DISABLE_DLOPEN
 #define LUA_USE_DLOPEN		/* MacOS does not need -ldl */
+#endif
 #define LUA_READLINELIB		"libedit.dylib"
 #endif
 
 
 #if defined(LUA_USE_IOS)
 #define LUA_USE_POSIX
+#ifndef LUA_DISABLE_DLOPEN
 #define LUA_USE_DLOPEN
+#endif
 #endif
 
 
